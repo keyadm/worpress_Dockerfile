@@ -1,14 +1,12 @@
 #!/bin/sh
 
 set -e
+echo "mysql starting"
+service mysql start
 
-echo "Starting mysql daemon"
-mysql -g 'daemon off;'
-
-mysql -e "CREATE DATABASE wordpress;
-CREATE USER 'kiennt1'@'localhost' IDENTIFIED BY 'caoml@2020';
-GRANT ALL PRIVILEGES ON wordpress.* TO 'kiennt1'@'localhost';
-FLUSH PRIVILEGES;
-EXIT; "
-
-mysql -e "DROP USER 'root'@'localhost';FLUSH PRIVILEGES;"
+mysql -e "CREATE DATABASE wordpress;"
+mysql -e "CREATE USER 'kiennt1'@'localhost' IDENTIFIED BY 'caoml@2020';"
+mysql -e "GRANT ALL PRIVILEGES ON wordpress . * TO 'kiennt1'@'localhost';"
+mysql -e "FLUSH PRIVILEGES;"
+mysql -e "DROP USER 'root'@'localhost';"
+mysql -u kiennt1 -pcaoml@2020
